@@ -1,1 +1,1 @@
-Images
+Trip Detail Screenshot
