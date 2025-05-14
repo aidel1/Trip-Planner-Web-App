@@ -1,0 +1,19 @@
+class savedtrip(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    destination = models.CharField(max_length=100, choices=DESTINATIONS)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    group_size = models.IntegerField()
+    budget = models.DecimalField(max_digits=10, decimal_places=2)
+    
+    hotel = models.ForeignKey(Hotel, on_delete=models.SET_NULL, null=True)
+    restaurants = models.ManyToManyField(Restaurant)
+    activities = models.JSONField()  
+    hotel_cost = models.DecimalField(max_digits=10, decimal_places=2)
+    restaurant_cost = models.DecimalField(max_digits=10, decimal_places=2)
+    activity_cost = models.DecimalField(max_digits=10, decimal_places=2)
+    remaining_budget = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f"{self.name} ({self.destination})"
